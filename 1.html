@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<title>Convert URL Text into Hyperlink</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="col-xs-8 col-xs-offset-2">
+    <h2 class="bg-warning text-center">Convert URL Text to Clickable Link | Demo</h2>
+        <form>
+            <div class="form-group">
+                <textarea id="urltext" style="width: 1399px;
+                height: 347px;" placeholder="Please enter url text here..." class="form-control input-lg" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Convert" class="btn btn-warning btn-block btn-lg" onclick="toHyperlink();" />
+            </div>
+        </form>
+        <div id="result" class="lead"></div>
+    </div>
+<script type="text/javascript">
+function toHyperlink()
+{
+    var str = document.getElementById("urltext").value;
+    
+    var pattern1 = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    var str1 = str.replace(pattern1, "<a href='$1' target='_blank'>$1</a>");
+    
+    var pattern2 =/(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    var str2 = str1.replace(pattern2, '$1<a target="_blank" href="http://$2">$2</a>');
+    
+    document.getElementById("result").innerHTML = str2;
+}
+</script>
+</body>
+</html>
